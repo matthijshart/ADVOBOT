@@ -6,16 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="Boutique advocatenkantoor dat scherpe juridische kennis combineert met verantwoorde AI voor betaalbare en transparante rechtshulp."
+    content="Boutique advocatenkantoor dat scherpe juridische kennis combineert met verantwoorde AI voor betaalbare en transparante rechtshulp en contracten."
   />
   <style>
     :root {
       --bg: #f7f7f5;
       --bg-alt: #ffffff;
       --accent: #0f766e;
-      --accent-soft: #d1e5e2;
       --text-main: #111827;
-      --text-muted: #6b7280;
+      --text-muted: #e5e7eb;
+      --text-muted-dark: #6b7280;
       --border-soft: #e5e7eb;
       --radius-lg: 18px;
       --radius-xl: 26px;
@@ -54,19 +54,26 @@
       flex-direction: column;
     }
 
+    /* Header / nav */
+
     header {
-      border-bottom: 1px solid rgba(229, 231, 235, 0.7);
-      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+      backdrop-filter: blur(14px);
       position: sticky;
       top: 0;
-      z-index: 40;
-      background: rgba(247, 247, 245, 0.9);
+      z-index: 50;
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.65),
+        rgba(15, 23, 42, 0.25)
+      );
+      color: #f9fafb;
     }
 
     .nav {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 1.25rem 1.5rem;
+      padding: 0.85rem 1.25rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -100,7 +107,7 @@
     .logo-sub {
       font-size: 0.75rem;
       font-weight: 400;
-      color: var(--text-muted);
+      color: #e5e7eb;
       text-transform: none;
       letter-spacing: 0;
     }
@@ -112,13 +119,13 @@
     }
 
     .nav-links a {
-      color: var(--text-muted);
-      transition: color 0.15s ease, opacity 0.15s ease;
+      color: #e5e7eb;
       opacity: 0.8;
+      transition: color 0.15s ease, opacity 0.15s ease;
     }
 
     .nav-links a:hover {
-      color: var(--text-main);
+      color: #f9fafb;
       opacity: 1;
     }
 
@@ -126,11 +133,8 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
-    }
-
-    .nav-cta span {
       font-size: 0.8rem;
-      color: var(--text-muted);
+      color: #e5e7eb;
     }
 
     .btn {
@@ -140,35 +144,34 @@
       font-weight: 500;
       border: 1px solid transparent;
       cursor: pointer;
-      background: var(--accent);
-      color: #ecfdf5;
-      box-shadow: 0 10px 30px rgba(15, 118, 110, 0.45);
+      background: #f9fafb;
+      color: #0f172a;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.35);
       transition: transform 0.12s ease, box-shadow 0.12s ease,
         background-color 0.15s ease, border-color 0.15s ease;
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
       text-decoration: none;
+      white-space: nowrap;
     }
 
     .btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 18px 40px rgba(15, 118, 110, 0.5);
-      background-color: #0d615a;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.45);
+      background-color: #e5e7eb;
     }
 
-    .btn-outline {
+    .btn-outline-light {
       background: transparent;
-      border-color: rgba(148, 163, 184, 0.5);
-      color: var(--text-main);
+      border-color: rgba(243, 244, 246, 0.7);
+      color: #f9fafb;
       box-shadow: none;
     }
 
-    .btn-outline:hover {
-      background: #ffffff;
-      box-shadow: 0 10px 30px rgba(148, 163, 184, 0.25);
-      border-color: rgba(148, 163, 184, 0.7);
-      transform: translateY(-1px);
+    .btn-outline-light:hover {
+      background: rgba(15, 23, 42, 0.3);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.4);
     }
 
     main {
@@ -184,66 +187,98 @@
       margin: 0 auto;
     }
 
-    /* Hero */
+    /* HERO – volledige afbeelding als eerste pagina */
 
     .hero {
-      padding-top: 4rem;
-      padding-bottom: 3.5rem;
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      padding: 0;
+      color: #f9fafb;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      gap: 3rem;
-      align-items: center;
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url("Koeriersdienst-advocatuur-Amsterdam.jpg");
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.02);
+      filter: saturate(1.05);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+          to bottom,
+          rgba(15, 23, 42, 0.82),
+          rgba(15, 23, 42, 0.68),
+          rgba(15, 23, 42, 0.85)
+        );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 5.5rem 1.5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 100vh;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.2rem 0.55rem;
+      padding: 0.25rem 0.7rem;
       border-radius: 999px;
       font-size: 0.7rem;
-      background: rgba(209, 229, 226, 0.7);
-      color: #0f766e;
+      background: rgba(15, 118, 110, 0.19);
+      color: #a5f3fc;
       margin-bottom: 1.2rem;
+      border: 1px solid rgba(34, 211, 238, 0.35);
     }
 
     .eyebrow-dot {
       height: 7px;
       width: 7px;
       border-radius: 999px;
-      background: #0f766e;
+      background: #22c55e;
     }
 
     h1 {
-      font-size: clamp(2.2rem, 4vw, 2.9rem);
+      font-size: clamp(2rem, 4.2vw, 2.9rem);
       line-height: 1.1;
       letter-spacing: -0.04em;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
+      max-width: 26rem;
     }
 
     .hero-sub {
       font-size: 0.98rem;
-      max-width: 34rem;
-      color: var(--text-muted);
-      margin-bottom: 1.8rem;
+      max-width: 30rem;
+      color: #e5e7eb;
+      margin-bottom: 1.6rem;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 0.9rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.4rem;
     }
 
     .hero-meta {
-      font-size: 0.78rem;
-      color: var(--text-muted);
+      font-size: 0.76rem;
+      color: #d1d5db;
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem;
+      gap: 0.7rem;
     }
 
     .hero-meta span {
@@ -259,75 +294,10 @@
       background: #9ca3af;
     }
 
-    .hero-card {
-      background: linear-gradient(
-        145deg,
-        rgba(255, 255, 255, 0.96),
-        rgba(238, 242, 255, 0.9)
-      );
-      border-radius: var(--radius-xl);
-      padding: 1.8rem 1.7rem;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(226, 232, 240, 0.9);
-      display: flex;
-      flex-direction: column;
-      gap: 1.3rem;
-    }
-
-    .hero-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-
-    .hero-card-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-
-    .hero-card-pill {
-      font-size: 0.7rem;
-      padding: 0.18rem 0.6rem;
-      border-radius: 999px;
-      background: #ecfdf5;
-      color: #15803d;
-      border: 1px solid #bbf7d0;
-    }
-
-    .hero-card-list {
-      list-style: none;
-      font-size: 0.8rem;
-      display: grid;
-      gap: 0.4rem;
-      color: var(--text-muted);
-    }
-
-    .hero-card-list li::before {
-      content: "–";
-      margin-right: 0.4rem;
-      color: #4b5563;
-    }
-
-    .hero-card-footer {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      align-items: center;
+    .hero-tagline {
       font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-
-    .hero-metric {
-      display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
-    }
-
-    .hero-metric strong {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text-main);
+      color: #9ca3af;
+      margin-top: 1.4rem;
     }
 
     /* Generic section heading */
@@ -345,14 +315,14 @@
 
     .section-heading p {
       font-size: 0.95rem;
-      color: var(--text-muted);
+      color: var(--text-muted-dark);
     }
 
-    /* Three column features */
+    /* Features / visie */
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
       gap: 1.5rem;
     }
 
@@ -382,8 +352,50 @@
 
     .feature-footnote {
       font-size: 0.78rem;
-      color: var(--text-muted);
+      color: var(--text-muted-dark);
       margin-top: 0.4rem;
+    }
+
+    /* Contracts section */
+
+    .contracts-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 1.8rem;
+      align-items: flex-start;
+    }
+
+    .contracts-list {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--text-muted-dark);
+      display: grid;
+      gap: 0.45rem;
+      margin-top: 0.4rem;
+    }
+
+    .contracts-list li::before {
+      content: "•";
+      margin-right: 0.4rem;
+      color: #4b5563;
+    }
+
+    .contracts-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 1.3rem 1.3rem;
+      font-size: 0.85rem;
+      display: grid;
+      gap: 0.6rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contracts-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #9ca3af;
     }
 
     /* How it works */
@@ -428,7 +440,7 @@
     }
 
     .step-body {
-      color: var(--text-muted);
+      color: var(--text-muted-dark);
     }
 
     .trust-card {
@@ -439,6 +451,7 @@
       font-size: 0.85rem;
       display: grid;
       gap: 0.7rem;
+      box-shadow: var(--shadow-soft);
     }
 
     .trust-tag {
@@ -452,7 +465,7 @@
       list-style: none;
       display: grid;
       gap: 0.4rem;
-      color: var(--text-muted);
+      color: var(--text-muted-dark);
     }
 
     .trust-list li {
@@ -480,7 +493,7 @@
 
     .pricing-note {
       font-size: 0.85rem;
-      color: var(--text-muted);
+      color: var(--text-muted-dark);
       margin-top: 0.3rem;
     }
 
@@ -517,7 +530,7 @@
     .price span {
       font-size: 0.8rem;
       font-weight: 400;
-      color: var(--text-muted);
+      color: var(--text-muted-dark);
       margin-left: 0.1rem;
     }
 
@@ -526,7 +539,7 @@
       display: grid;
       gap: 0.35rem;
       font-size: 0.85rem;
-      color: var(--text-muted);
+      color: var(--text-muted-dark);
     }
 
     .pricing-list li::before {
@@ -558,7 +571,7 @@
     }
 
     .faq-a {
-      color: var(--text-muted);
+      color: var(--text-muted-dark);
     }
 
     /* Contact */
@@ -623,7 +636,7 @@
       align-items: flex-start;
       gap: 0.45rem;
       font-size: 0.78rem;
-      color: var(--text-muted);
+      color: var(--text-muted-dark);
     }
 
     .consent-row input[type="checkbox"] {
@@ -635,7 +648,7 @@
 
     .contact-meta {
       font-size: 0.85rem;
-      color: var(--text-muted);
+      color: var(--text-muted-dark);
       display: grid;
       gap: 0.9rem;
     }
@@ -656,8 +669,8 @@
       border-top: 1px solid rgba(229, 231, 235, 0.8);
       padding: 1.6rem 1.5rem 2.1rem;
       font-size: 0.8rem;
-      color: var(--text-muted);
-      background: rgba(255, 255, 255, 0.8);
+      color: var(--text-muted-dark);
+      background: rgba(255, 255, 255, 0.9);
     }
 
     .footer-inner {
@@ -683,18 +696,6 @@
     /* Responsive */
 
     @media (max-width: 960px) {
-      .hero-grid,
-      .how-grid,
-      .pricing-grid,
-      .faq-grid,
-      .contact-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-card {
-        order: -1;
-      }
-
       .nav-links {
         display: none;
       }
@@ -703,32 +704,33 @@
         display: none;
       }
 
-      header {
-        position: static;
+      .contracts-grid,
+      .how-grid,
+      .pricing-grid,
+      .faq-grid,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
     @media (max-width: 720px) {
-      .features-grid {
-        grid-template-columns: minmax(0, 1fr);
+      .hero-content {
+        padding: 5.2rem 1.3rem 3.2rem;
+      }
+
+      h1 {
+        max-width: 100%;
       }
 
       .section {
         padding-inline: 1.2rem;
-      }
-
-      .hero {
-        padding-top: 2.7rem;
-      }
-
-      .hero-card {
-        padding: 1.4rem 1.3rem;
       }
     }
   </style>
 </head>
 <body>
   <div class="page">
+    <!-- HEADER -->
     <header>
       <div class="nav">
         <div class="logo">
@@ -740,86 +742,62 @@
         </div>
         <nav class="nav-links">
           <a href="#about">Visie</a>
+          <a href="#contracts">Contracten</a>
           <a href="#how">Werkwijze</a>
           <a href="#pricing">Tarieven</a>
-          <a href="#faq">Veelgestelde vragen</a>
+          <a href="#faq">FAQ</a>
         </nav>
         <div class="nav-cta">
           <span>Transparant & betaalbaar</span>
-          <a href="#contact" class="btn">Plan een kennismaking →</a>
+          <a href="#contact" class="btn">Kennismaking →</a>
         </div>
       </div>
     </header>
 
     <main>
-      <!-- Hero -->
-      <section class="section hero">
-        <div class="section-inner hero-grid">
-          <div>
-            <div class="eyebrow">
-              <span class="eyebrow-dot"></span>
-              Boutique advocatuur met AI als copiloot
-            </div>
-            <h1>Toegankelijke rechtshulp, dankzij slimme AI&nbsp;+ advocaten.</h1>
-            <p class="hero-sub">
-              Wij combineren ervaren juristen met veilige, transparante
-              AI-systemen. Zo krijgt u scherpe analyse van dossiers, sneller
-              inzicht in uw positie en voorspelbare kosten.
-            </p>
-            <div class="hero-actions">
-              <a href="#contact" class="btn"
-                >Vrijblijvend intakegesprek plannen</a
-              >
-              <a href="#how" class="btn btn-outline">Hoe werkt dit in de praktijk?</a>
-            </div>
-            <div class="hero-meta">
-              <span>✓ AI altijd onder toezicht van een advocaat</span>
-              <span class="hero-meta-dot"></span>
-              <span>✓ Transparant databeheer & privacy-by-design</span>
-            </div>
+      <!-- HERO – volledige foto met tekst -->
+      <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Advocatuur in Amsterdam met AI als copiloot
           </div>
-
-          <aside class="hero-card" aria-label="Overzicht aanpak">
-            <div class="hero-card-header">
-              <div>
-                <div class="hero-card-title">
-                  Wat onze AI-juridische analyse voor u doet
-                </div>
-                <ul class="hero-card-list">
-                  <li>Feiten van uw dossier gestructureerd in kaart brengen</li>
-                  <li>Relevante wet- en regelgeving en jurisprudentie zoeken</li>
-                  <li>Vergelijken met duizenden soortgelijke zaken</li>
-                </ul>
-              </div>
-              <span class="hero-card-pill">Mens + machine</span>
-            </div>
-            <div class="hero-card-footer">
-              <div class="hero-metric">
-                <span>Doorlooptijd eerste analyse</span>
-                <strong>24–48 uur</strong>
-              </div>
-              <div class="hero-metric">
-                <span>Kostenbesparing</span>
-                <strong>tot 40%*</strong>
-                <span style="font-size: 0.7rem; color: var(--text-muted)"
-                  >*t.o.v. traditionele uurtarieven</span
-                >
-              </div>
-            </div>
-          </aside>
+          <h1>Toegankelijke rechtshulp dankzij&nbsp;slimme AI&nbsp;+ advocaten.</h1>
+          <p class="hero-sub">
+            Menselijke juristen, versterkt door verantwoorde AI. Snelle analyse
+            van uw dossier en contracten, heldere strategie en voorspelbare kosten.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn">
+              Plan een vrijblijvend intakegesprek
+            </a>
+            <a href="#contracts" class="btn btn-outline-light">
+              Contract laten checken?
+            </a>
+          </div>
+          <div class="hero-meta">
+            <span>✓ Altijd duidelijk wanneer AI wordt ingezet</span>
+            <span class="hero-meta-dot"></span>
+            <span>✓ Ideaal voor contracten, arbeids- en zakelijke geschillen</span>
+          </div>
+          <div class="hero-tagline">
+            Boutique AI-advocatenkantoor · focus op heldere communicatie, sterke contracten en praktische oplossingen.
+          </div>
         </div>
       </section>
 
-      <!-- About / visie -->
+      <!-- VISIE -->
       <section id="about" class="section">
         <div class="section-inner">
           <div class="section-heading">
             <h2>Een nieuw type advocatenkantoor.</h2>
             <p>
-              Niet elk dossier vraagt om een leger aan advocaten. Veel werk
-              bestaat uit feiten ordenen, rechtsregels toepassen en vergelijken
-              met vergelijkbare zaken. Precies daar is AI sterk in — mits
-              zorgvuldig ingericht, gecontroleerd en uitgelegd.
+              Veel juridisch werk bestaat uit feiten ordenen, rechtsregels toepassen
+              en vergelijken met eerdere zaken en contractstructuren. Precies daar
+              is AI sterk in — mits zorgvuldig ingericht, gecontroleerd en uitgelegd.
+              Wij combineren dat met klassieke advocatuur en professionele standaarden.
             </p>
           </div>
 
@@ -828,42 +806,111 @@
               <div class="feature-label">01 · Transparant gebruik van AI</div>
               <div class="feature-title">Altijd duidelijk dat AI wordt ingezet</div>
               <p>
-                We zijn volledig open naar onze cliënten én de rechter: AI wordt
-                gebruikt als hulpmiddel, niet als vervanging van de advocaat.
-                U weet altijd welke stappen door mensen en welke door AI zijn
-                gedaan.
+                We zijn open naar cliënten én rechter: AI is een hulpmiddel,
+                geen vervanging van de advocaat. U weet welke stappen door mensen
+                en welke door AI zijn gedaan.
               </p>
             </article>
 
             <article class="feature-card">
-              <div class="feature-label">02 · Betaalbare rechtstoegang</div>
-              <div class="feature-title">Meer mensen toegang tot recht</div>
+              <div class="feature-label">02 · Contracten & documenten</div>
+              <div class="feature-title">Slimme ondersteuning bij contractwerk</div>
               <p>
-                Door repetitieve analyse gedeeltelijk te automatiseren, blijft
-                er meer tijd over voor strategie, onderhandeling en menselijke
-                aandacht. Dat drukt de kosten en maakt juridische bijstand
-                bereikbaar voor een grotere groep cliënten.
+                Van arbeidscontracten tot SaaS-voorwaarden: AI helpt bij
+                structureren, vergelijken en signaleren van risico’s. De
+                advocaat vertaalt dit naar concrete keuzes, onderhandelingsopties
+                en maatwerkclausules.
               </p>
               <p class="feature-footnote">
-                Ideaal voor particulieren, zzp’ers en kleinere organisaties.
+                Praktisch voor ondernemers, scale-ups en particulieren met
+                maatwerkafspraken.
               </p>
             </article>
 
             <article class="feature-card">
-              <div class="feature-label">03 · Verantwoorde technologie</div>
+              <div class="feature-label">03 · Betaalbare rechtstoegang</div>
+              <div class="feature-title">Meer mensen toegang tot recht</div>
+              <p>
+                Door repetitieve analyse te automatiseren, blijft er meer tijd
+                over voor strategie en persoonlijke aandacht. Dat drukt de kosten
+                en maakt juridische bijstand toegankelijker.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-label">04 · Verantwoorde technologie</div>
               <div class="feature-title">Privacy, ethiek en kwaliteit centraal</div>
               <p>
                 Gegevens worden strikt vertrouwelijk behandeld. We werken met
                 zorgvuldig geselecteerde AI-modellen, heldere dataverwerking en
-                een menselijk eindbesluit. Geen black box, wel een duidelijke
-                onderbouwing.
+                menselijke eindbeslissingen. Geen black box, wel uitleg.
               </p>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- How it works -->
+      <!-- CONTRACTEN -->
+      <section id="contracts" class="section" style="padding-top: 0">
+        <div class="section-inner contracts-grid">
+          <div>
+            <div class="section-heading">
+              <h2>Contracten opstellen, laten nalezen en benchmarken.</h2>
+              <p>
+                Contracten zijn vaak een mix van standaardclausules en maatwerk.
+                AI helpt om die standaardonderdelen snel te analyseren en te
+                vergelijken met soortgelijke constructies, terwijl de advocaat
+                scherp blijft op uw commerciële en persoonlijke belangen.
+              </p>
+            </div>
+
+            <ul class="contracts-list">
+              <li>
+                <strong>Opstellen van contracten</strong> – onder meer
+                arbeidsovereenkomsten, samenwerkingsovereenkomsten,
+                aandeelhoudersovereenkomsten, SaaS- en licentievoorwaarden, NDA’s.
+              </li>
+              <li>
+                <strong>Review & second opinion</strong> – contract dat u heeft
+                ontvangen laten nalopen op risico’s, onduidelijkheden en ontbrekende
+                bepalingen.
+              </li>
+              <li>
+                <strong>Vergelijken met soortgelijke contracten</strong> – benchmark
+                van clausules (bijv. concurrentiebeding, aansprakelijkheidslimiet,
+                opzegtermijn) met gebruikelijke marktpraktijk.
+              </li>
+              <li>
+                <strong>Consistentie-check</strong> – AI signaleert tegenstrijdige
+                bepalingen tussen hoofdcontract, bijlagen en eerdere versies, zodat
+                de advocaat gericht kan bijsturen.
+              </li>
+            </ul>
+          </div>
+
+          <aside class="contracts-card">
+            <div class="contracts-tag">Contractscan & vergelijking</div>
+            <h3 style="font-size: 1rem; margin-bottom: 0.3rem">
+              Voorbeeld: “Contract quickscan”
+            </h3>
+            <p>
+              U stuurt een conceptcontract. AI helpt om structuur en
+              aandachtspunten zichtbaar te maken; een advocaat beoordeelt vervolgens:
+            </p>
+            <ul class="contracts-list" style="margin-top: 0.2rem">
+              <li>Kernrisico’s en onbalans in het contract</li>
+              <li>Afwijkingen van gangbare marktvoorwaarden</li>
+              <li>Mogelijke alternatieve formuleringen en onderhandelingsruimte</li>
+            </ul>
+            <p style="font-size: 0.8rem; margin-top: 0.4rem;">
+              U ontvangt een begrijpelijk verslag met concrete suggesties en
+              indien gewenst een aangepaste versie van het contract.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- WERKWIJZE -->
       <section id="how" class="section" style="padding-top: 0">
         <div class="section-inner how-grid">
           <div>
@@ -871,8 +918,9 @@
               <h2>Hoe werken advocaat en AI samen?</h2>
               <p>
                 U spreekt altijd met een mens. AI is onze “co-piloot” achter de
-                schermen: ondersteunt bij analyse, nooit bij beslissingen over
-                uw strategie of belangrijke processtappen.
+                schermen: ondersteunt bij analyse van dossiers én contracten,
+                nooit bij beslissingen over uw strategie of belangrijke
+                processtappen.
               </p>
             </div>
 
@@ -882,9 +930,10 @@
                 <div>
                   <div class="step-title">Intake en scope</div>
                   <p class="step-body">
-                    Tijdens een (online) intake bespreken we uw situatie,
-                    doel en budget. We bepalen welke onderdelen geschikt zijn
-                    voor AI-ondersteuning en welke juist niet.
+                    Tijdens een (online) intake bespreken we uw situatie, doel
+                    en budget. We bepalen welke onderdelen geschikt zijn voor
+                    AI-ondersteuning (bijvoorbeeld contractscan) en welke juist
+                    niet.
                   </p>
                 </div>
               </div>
@@ -894,10 +943,10 @@
                 <div>
                   <div class="step-title">AI-analyse onder toezicht</div>
                   <p class="step-body">
-                    De feiten, stukken en relevante wetgeving worden
-                    geordend en geanalyseerd met behulp van AI. Een
-                    advocaat controleert de uitkomsten, corrigeert waar
-                    nodig en voegt juridische duiding toe.
+                    De feiten, stukken, contracten en relevante wetgeving worden
+                    geordend en geanalyseerd met AI. Een advocaat controleert de
+                    uitkomsten, corrigeert waar nodig en voegt juridische
+                    duiding toe.
                   </p>
                 </div>
               </div>
@@ -907,10 +956,9 @@
                 <div>
                   <div class="step-title">Heldere strategie & kostenplaatje</div>
                   <p class="step-body">
-                    U ontvangt een begrijpelijk overzicht van uw positie,
-                    mogelijke routes (procederen, schikken, onderhandelen)
-                    en de daarbij behorende kosten. Geen verrassingen, wel
-                    keuzes.
+                    U ontvangt een overzicht van uw positie en routes
+                    (aanpassen, heronderhandelen, niet tekenen, procederen) met
+                    de bijbehorende kosten. Geen verrassingen, wel keuzes.
                   </p>
                 </div>
               </div>
@@ -920,60 +968,56 @@
           <aside class="trust-card">
             <div class="trust-tag">Vertrouwen & zorgvuldigheid</div>
             <h3 style="font-size: 1rem; margin-bottom: 0.2rem">
-              Zo borgen we kwaliteit van uw zaak
+              Zo borgen we kwaliteit van uw zaak en contracten
             </h3>
             <ul class="trust-list">
               <li>
                 <span class="trust-bullet"></span>
-                <span
-                  >AI-voorstellen worden nooit één-op-één overgenomen; een
-                  advocaat blijft eindverantwoordelijk.</span
-                >
+                <span>Een advocaat blijft altijd eindverantwoordelijk.</span>
               </li>
               <li>
                 <span class="trust-bullet"></span>
-                <span
-                  >Gegevens worden niet gebruikt om publieke modellen te
-                  trainen. We werken met strikte
-                  verwerkersovereenkomsten.</span
-                >
+                <span>
+                  Gegevens worden niet gebruikt om publieke modellen te trainen;
+                  we werken met strikte verwerkersovereenkomsten.
+                </span>
               </li>
               <li>
                 <span class="trust-bullet"></span>
-                <span
-                  >We leggen desgewenst in processtukken vast hoe AI geholpen
-                  heeft bij de analyse — transparant naar alle partijen.</span
-                >
+                <span>
+                  We kunnen desgewenst toelichten hoe AI heeft geholpen bij de
+                  analyse — transparant naar alle partijen.
+                </span>
               </li>
               <li>
                 <span class="trust-bullet"></span>
-                <span
-                  >Regelmatige kwaliteitscontroles en bijsturing op basis van
-                  nieuwe jurisprudentie en technologische ontwikkelingen.</span
-                >
+                <span>
+                  Regelmatige kwaliteitscontroles op basis van nieuwe
+                  jurisprudentie, marktpraktijk en technologische ontwikkelingen.
+                </span>
               </li>
             </ul>
           </aside>
         </div>
       </section>
 
-      <!-- Pricing -->
+      <!-- TARIEVEN -->
       <section id="pricing" class="section">
         <div class="section-inner pricing-grid">
           <div>
             <div class="section-heading">
               <h2>Heldere tarieven, geen verborgen kosten.</h2>
               <p>
-                We werken waar mogelijk met vaste bedragen per fase of
-                voorspelbare bandbreedtes. Dankzij AI-ondersteuning kunnen we
-                het aantal uren voor analyse beperken en u beter vooraf
-                informeren.
+                Waar mogelijk werken we met vaste bedragen per fase of duidelijke
+                bandbreedtes. Dankzij AI-ondersteuning kunnen we het aantal uren
+                voor analyse beperken en u vooraf beter informeren.
               </p>
             </div>
 
             <p class="pricing-note">
               Onderstaande bedragen zijn indicatief. Tijdens de intake maken we
-              een offerte op maat, passend bij de complexiteit van uw zaak.
+              een offerte op maat, passend bij de complexiteit van uw zaak of
+              contract.
             </p>
           </div>
 
@@ -982,28 +1026,27 @@
               <div>
                 <div class="pricing-pill">Startpakket</div>
                 <div style="margin-top: 0.3rem; font-size: 0.9rem">
-                  Eerste juridische beoordeling
+                  Eerste juridische beoordeling of contractscan
                 </div>
               </div>
-              <div class="price">
-                € 450
-                <span>vast tarief incl. AI-analyse</span>
-              </div>
+            </div>
+            <div class="price">
+              € 450
+              <span>vast tarief incl. AI-analyse</span>
             </div>
 
             <ul class="pricing-list">
               <li>Intakegesprek (online of op kantoor)</li>
-              <li>AI-ondersteunde dossier- en risicoanalyse</li>
+              <li>AI-ondersteunde dossier- of contractanalyse</li>
               <li>Beoordeling door advocaat en advies in begrijpelijke taal</li>
-              <li>Globale inschatting kansen, risico’s en kosten traject</li>
+              <li>Inschatting kansen, risico’s en praktische opties</li>
               <li>Optie om vervolgwerkzaamheden vooraf af te spreken</li>
             </ul>
 
-            <div style="font-size: 0.78rem; color: var(--text-muted)">
-              Voor procedures, complexe ondernemingskwesties of
-              langlopende trajecten werken we met heldere
-              uurtarieven en/of deelpakketten. Neem contact op
-              voor een vrijblijvende indicatie.
+            <div style="font-size: 0.78rem; color: var(--text-muted-dark)">
+              Voor procedures, complexe ondernemingskwesties of langlopende
+              trajecten hanteren we heldere uurtarieven en/of deelpakketten.
+              Vraag tijdens de intake om een indicatie.
             </div>
           </aside>
         </div>
@@ -1015,8 +1058,9 @@
           <div class="section-heading">
             <h2>Veelgestelde vragen.</h2>
             <p>
-              Twijfelt u of AI-ondersteunde rechtshulp passend is voor uw zaak?
-              Hieronder beantwoorden we een aantal veel gehoorde vragen.
+              Twijfelt u of AI-ondersteunde rechtshulp passend is voor uw zaak
+              of contract? Hieronder beantwoorden we een aantal veel gehoorde
+              vragen.
             </p>
           </div>
 
@@ -1024,10 +1068,10 @@
             <div class="faq-item">
               <div class="faq-q">Neemt AI de rol van de advocaat over?</div>
               <div class="faq-a">
-                Nee. AI helpt met ordenen, zoeken en vergelijken. Een menselijk
-                advocaat beoordeelt de kwaliteit, plaatst alles in context en
-                neemt de uiteindelijke beslissingen over strategie, voorstellen
-                aan de wederpartij en processtukken.
+                Nee. AI helpt met ordenen, zoeken en vergelijken. De advocaat
+                beoordeelt de kwaliteit, plaatst alles in context en neemt
+                beslissingen over strategie, voorstellen aan de wederpartij en
+                processtukken.
               </div>
             </div>
 
@@ -1035,22 +1079,21 @@
               <div class="faq-q">Hoe weet ik dat mijn data veilig zijn?</div>
               <div class="faq-a">
                 We behandelen alle gegevens als strikt vertrouwelijk. We
-                gebruiken alleen zorgvuldig geselecteerde AI-diensten, met een
-                duidelijke verwerkersovereenkomst, en trainen geen publieke
-                modellen met uw gegevens. Desgewenst leggen we dit contractueel
-                vast.
+                gebruiken zorgvuldig geselecteerde AI-diensten, met heldere
+                verwerkersovereenkomsten, en trainen geen publieke modellen met
+                uw gegevens. Dit kunnen we ook contractueel vastleggen.
               </div>
             </div>
 
             <div class="faq-item">
               <div class="faq-q">
-                Kunnen rechters bezwaar hebben tegen het gebruik van AI?
+                Kunnen jullie mijn bestaande contractmodel beoordelen?
               </div>
               <div class="faq-a">
-                Zolang duidelijk is dat AI een hulpmiddel is en de advocaat
-                verantwoordelijk blijft, past dit binnen de professionele
-                standaarden. Waar relevant kunnen we toelichten hoe AI is
-                ingezet bij de analyse van uw dossier.
+                Ja. U kunt een bestaand contract of model aanleveren voor een
+                quickscan of uitgebreide review. AI signaleert inconsistenties
+                en opvallende clausules; de advocaat voegt inhoudelijke context
+                en praktische adviezen toe.
               </div>
             </div>
 
@@ -1060,17 +1103,16 @@
               </div>
               <div class="faq-a">
                 Met name voor dossiers met veel documenten of standaard
-                vraagstukken waar veel jurisprudentie over bestaat, zoals
-                arbeidszaken, contractgeschillen, consumentenvraagstukken en
-                bepaalde bestuursrechtelijke kwesties. Bij niche- of
-                strafzaken kijken we per geval wat verstandig is.
+                vraagstukken, zoals arbeidszaken, contractgeschillen,
+                consumentenvraagstukken en bepaalde bestuursrechtelijke kwesties.
+                Bij niche- of strafzaken kijken we per geval wat verstandig is.
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Contact -->
+      <!-- CONTACT -->
       <section id="contact" class="section">
         <div class="section-inner contact-grid">
           <div>
@@ -1080,7 +1122,7 @@
                 Vertel kort waar uw vraag over gaat. We reageren doorgaans binnen
                 één werkdag met een voorstel voor een bel- of videocall. In dat
                 gesprek bespreken we meteen of AI-ondersteuning toegevoegde
-                waarde heeft voor uw dossier.
+                waarde heeft voor uw dossier of contract.
               </p>
             </div>
 
@@ -1124,7 +1166,7 @@
                 <textarea
                   id="message"
                   name="message"
-                  placeholder="Beschrijf in enkele zinnen uw vraag of zaak…"
+                  placeholder="Beschrijf in enkele zinnen uw vraag of het contract waar het om gaat…"
                   required
                 ></textarea>
               </div>
@@ -1147,13 +1189,11 @@
           <aside class="contact-meta">
             <div class="contact-meta-block">
               <strong>Contactgegevens</strong>
-              <p>
-                Hier komen uw eigen gegevens, bijvoorbeeld:
-              </p>
+              <p>Vul hier uw eigen gegevens in, bijvoorbeeld:</p>
               <p>
                 Boutique AI Advocatenkantoor<br />
                 Straatnaam 123<br />
-                1234 AB Plaatsnaam
+                1234 AB Amsterdam
               </p>
               <p>
                 E-mail: info@boutique-legal.ai<br />
@@ -1164,9 +1204,9 @@
             <div class="contact-meta-block">
               <strong>Belangrijke juridische informatie</strong>
               <p>
-                Hier kunt u verwijzen naar uw kantoorklachtenregeling,
-                privacyverklaring, algemene voorwaarden en inschrijving bij de
-                Nederlandse orde van advocaten of andere beroepsorganisaties.
+                Verwijs hier naar uw kantoorklachtenregeling, privacyverklaring,
+                algemene voorwaarden en inschrijving bij de Nederlandse orde van
+                advocaten of andere beroepsorganisaties.
               </p>
             </div>
           </aside>
@@ -1187,10 +1227,7 @@
   </div>
 
   <script>
-    // Huidig jaar in de footer
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
-
